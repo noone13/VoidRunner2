@@ -1,0 +1,201 @@
+[
+  { "id": "sol", "name": "Sol", "faction": "hegemony", "tier": 3, "isCore": true, "hasStation": true, "hasPlanet": true, "locked": false,
+    "position": { "x": 15, "y": 0, "z": 0 },
+    "connections": ["arcturus", "vega", "pax", "crossroads"],
+    "description": "Hegemony capital system. Heavy patrol presence." },
+
+  { "id": "arcturus", "name": "Arcturus", "faction": "hegemony", "tier": 2, "isCore": false, "hasStation": true, "hasPlanet": true, "locked": true,
+    "position": { "x": 12, "y": 1, "z": 5 },
+    "connections": ["sol", "bastion", "drift"],
+    "description": "Hegemony administrative hub. Trade and bureaucracy." },
+
+  { "id": "vega", "name": "Vega", "faction": "hegemony", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": 18, "y": -1, "z": 4 },
+    "connections": ["sol", "centurion", "frontier"],
+    "description": "Mining colony under Hegemony contract." },
+
+  { "id": "pax", "name": "Pax", "faction": "hegemony", "tier": 2, "isCore": false, "hasStation": true, "hasPlanet": true, "locked": true,
+    "position": { "x": 10, "y": 2, "z": -3 },
+    "connections": ["sol", "garrison", "waypoint"],
+    "description": "Hegemony garrison world. Military presence is high." },
+
+  { "id": "imperius", "name": "Imperius", "faction": "hegemony", "tier": 2, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": 14, "y": -2, "z": -5 },
+    "connections": ["pax", "garrison", "borderland"],
+    "description": "Old Hegemony world. Declining industry, rising unrest." },
+
+  { "id": "centurion", "name": "Centurion", "faction": "hegemony", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": 20, "y": 1, "z": -2 },
+    "connections": ["vega", "frontier"],
+    "description": "Deep space relay station. Few services, many eyes." },
+
+  { "id": "bastion", "name": "Bastion", "faction": "hegemony", "tier": 2, "isCore": false, "hasStation": true, "hasPlanet": true, "locked": true,
+    "position": { "x": 17, "y": 2, "z": 9 },
+    "connections": ["arcturus", "vagrant"],
+    "description": "Hegemony fortress world at the outer rim." },
+
+  { "id": "nova", "name": "Nova", "faction": "hegemony", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": 8, "y": -1, "z": 5 },
+    "connections": ["sol", "drift", "echo_base"],
+    "description": "Disputed border system. Coalition sympathizers present." },
+
+  { "id": "frontier", "name": "Frontier", "faction": "hegemony", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": 22, "y": 0, "z": 5 },
+    "connections": ["vega", "centurion", "razorback"],
+    "description": "Edge of Hegemony space. Pirate raids frequent." },
+
+  { "id": "garrison", "name": "Garrison", "faction": "hegemony", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": 11, "y": 1, "z": -8 },
+    "connections": ["pax", "imperius", "the_margin"],
+    "description": "Supply depot. Nothing glamorous, everything necessary." },
+
+  { "id": "nova_prime", "name": "Nova Prime", "faction": "coalition", "tier": 3, "isCore": true, "hasStation": true, "hasPlanet": true, "locked": false,
+    "position": { "x": -15, "y": 0, "z": 2 },
+    "connections": ["haven", "outpost_7", "echo_base", "crossroads"],
+    "description": "Coalition capital. Hidden, defended, alive with hope." },
+
+  { "id": "haven", "name": "Haven", "faction": "coalition", "tier": 2, "isCore": false, "hasStation": true, "hasPlanet": true, "locked": true,
+    "position": { "x": -12, "y": 1, "z": -4 },
+    "connections": ["nova_prime", "sanctuary", "borderland"],
+    "description": "Coalition safe harbor. Refugees and revolutionaries." },
+
+  { "id": "outpost_7", "name": "Outpost 7", "faction": "coalition", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": -18, "y": -1, "z": 5 },
+    "connections": ["nova_prime", "liberty", "the_belt"],
+    "description": "Forward observation post. Skeleton crew, maximum tension." },
+
+  { "id": "redoubt", "name": "Redoubt", "faction": "coalition", "tier": 2, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": -10, "y": 2, "z": 6 },
+    "connections": ["nova_prime", "free_port", "junction"],
+    "description": "Coalition stronghold. Heavily fortified, poorly supplied." },
+
+  { "id": "free_port", "name": "Free Port", "faction": "coalition", "tier": 2, "isCore": false, "hasStation": true, "hasPlanet": true, "locked": true,
+    "position": { "x": -13, "y": -2, "z": 9 },
+    "connections": ["redoubt", "nomad", "the_belt"],
+    "description": "Coalition-controlled trade hub. Everyone welcome, Hegemony excluded." },
+
+  { "id": "liberty", "name": "Liberty", "faction": "coalition", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": -20, "y": 1, "z": 0 },
+    "connections": ["outpost_7", "cutthroat"],
+    "description": "Outer rim colony. First system to break from the Hegemony." },
+
+  { "id": "sanctuary", "name": "Sanctuary", "faction": "coalition", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": -17, "y": 0, "z": -5 },
+    "connections": ["haven", "ghost_station"],
+    "description": "Medical station and refugee camp. Neutral in practice." },
+
+  { "id": "echo_base", "name": "Echo Base", "faction": "coalition", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": -8, "y": -1, "z": -3 },
+    "connections": ["nova_prime", "nova", "the_margin"],
+    "description": "Hidden listening post. Location classified." },
+
+  { "id": "cartel_hub", "name": "Cartel Hub", "faction": "syndicate", "tier": 3, "isCore": true, "hasStation": true, "hasPlanet": true, "locked": true,
+    "position": { "x": 0, "y": -3, "z": -14 },
+    "connections": ["shadow_reach", "black_market", "the_exchange", "borderland"],
+    "description": "Syndicate nerve center. Money flows in. People disappear." },
+
+  { "id": "shadow_reach", "name": "Shadow Reach", "faction": "syndicate", "tier": 2, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": 4, "y": -2, "z": -9 },
+    "connections": ["cartel_hub", "the_den", "waypoint"],
+    "description": "Syndicate distribution node. Ask no questions." },
+
+  { "id": "black_market", "name": "Black Market", "faction": "syndicate", "tier": 2, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": -4, "y": -2, "z": -10 },
+    "connections": ["cartel_hub", "ghost_station", "borderland"],
+    "description": "A station with no official name. Very busy." },
+
+  { "id": "the_exchange", "name": "The Exchange", "faction": "syndicate", "tier": 2, "isCore": false, "hasStation": true, "hasPlanet": false, "locked": true,
+    "position": { "x": 1, "y": -3, "z": -18 },
+    "connections": ["cartel_hub", "underworld"],
+    "description": "Deep space trading post. Syndicate prices, Syndicate rules." },
+
+  { "id": "underworld", "name": "Underworld", "faction": "syndicate", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": 5, "y": -2, "z": -16 },
+    "connections": ["the_exchange", "scrapyard"],
+    "description": "Forgotten colony planet. Syndicate owns everything underground." },
+
+  { "id": "ghost_station", "name": "Ghost Station", "faction": "syndicate", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": -6, "y": -1, "z": -13 },
+    "connections": ["black_market", "sanctuary"],
+    "description": "Derelict station, officially abandoned. Syndicate disagrees." },
+
+  { "id": "the_den", "name": "The Den", "faction": "syndicate", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": false,
+    "position": { "x": 3, "y": -1, "z": -7 },
+    "connections": ["shadow_reach", "crossroads"],
+    "description": "Small waystation. Known for information brokering." },
+
+  { "id": "deadrock", "name": "Deadrock", "faction": "pirates", "tier": 2, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": 6, "y": 4, "z": 16 },
+    "connections": ["limbo", "razorback"],
+    "description": "Pirate stronghold. Don't land unless you're one of them." },
+
+  { "id": "the_belt", "name": "The Belt", "faction": "pirates", "tier": 2, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": -6, "y": 3, "z": 18 },
+    "connections": ["outpost_7", "free_port", "cutthroat"],
+    "description": "Asteroid field. Pirates camp here between raids." },
+
+  { "id": "razorback", "name": "Razorback", "faction": "pirates", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": 11, "y": 4, "z": 13 },
+    "connections": ["frontier", "deadrock"],
+    "description": "Ambush point on the Hegemony trade route. Notorious." },
+
+  { "id": "scrapyard", "name": "Scrapyard", "faction": "pirates", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": -2, "y": 3, "z": 20 },
+    "connections": ["cutthroat", "underworld"],
+    "description": "Ship graveyard. Pirates strip what they can't fly." },
+
+  { "id": "cutthroat", "name": "Cutthroat", "faction": "pirates", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": -11, "y": 4, "z": 15 },
+    "connections": ["the_belt", "liberty", "scrapyard"],
+    "description": "No law. No mercy. Bring friends." },
+
+  { "id": "crossroads", "name": "Crossroads", "faction": "neutral", "tier": 2, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": false,
+    "position": { "x": 0, "y": 0, "z": 0 },
+    "connections": ["sol", "nova_prime", "the_den", "drift", "the_margin"],
+    "description": "The center of everything. Everyone passes through." },
+
+  { "id": "drift", "name": "Drift", "faction": "neutral", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": false,
+    "position": { "x": 5, "y": 0, "z": 5 },
+    "connections": ["crossroads", "arcturus", "nova"],
+    "description": "Drifting fuel depot. Cheap, reliable, no questions." },
+
+  { "id": "the_margin", "name": "The Margin", "faction": "neutral", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": false,
+    "position": { "x": -5, "y": 0, "z": 3 },
+    "connections": ["crossroads", "garrison", "echo_base"],
+    "description": "Barely self-sufficient colony. Stubbornly independent." },
+
+  { "id": "waypoint", "name": "Waypoint", "faction": "neutral", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": 8, "y": 1, "z": -4 },
+    "connections": ["pax", "shadow_reach"],
+    "description": "Fuel and repairs. That's all. That's enough." },
+
+  { "id": "borderland", "name": "Borderland", "faction": "neutral", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": -8, "y": 0, "z": -5 },
+    "connections": ["imperius", "haven", "cartel_hub", "black_market"],
+    "description": "Four factions, one planet. Everyone hates each other politely." },
+
+  { "id": "junction", "name": "Junction", "faction": "neutral", "tier": 2, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": -1, "y": 1, "z": 8 },
+    "connections": ["redoubt", "nomad", "limbo"],
+    "description": "Natural crossroads of coalition supply lines." },
+
+  { "id": "limbo", "name": "Limbo", "faction": "neutral", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": 4, "y": 2, "z": 13 },
+    "connections": ["junction", "deadrock", "vagrant"],
+    "description": "Between pirate space and coalition space. Nobody claims it." },
+
+  { "id": "nomad", "name": "Nomad", "faction": "neutral", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": -4, "y": 1, "z": 11 },
+    "connections": ["free_port", "junction"],
+    "description": "Mobile station. Coordinates change. Regulars know how to find it." },
+
+  { "id": "vagrant", "name": "Vagrant", "faction": "neutral", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": false, "locked": true,
+    "position": { "x": 9, "y": 0, "z": 10 },
+    "connections": ["bastion", "limbo"],
+    "description": "Old mining platform. Now just a place to hide." },
+
+  { "id": "passage", "name": "Passage", "faction": "neutral", "tier": 1, "isCore": false, "hasStation": false, "hasPlanet": true, "locked": true,
+    "position": { "x": -9, "y": 0, "z": 8 },
+    "connections": ["haven", "junction"],
+    "description": "Quiet system on the edge of coalition territory." }
+]
