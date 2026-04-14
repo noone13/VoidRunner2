@@ -8,6 +8,7 @@ import FactionState from '../core/FactionState.js';
 import WireframeFactory, { COLORS, FACTION_COLORS } from '../core/WireframeFactory.js';
 import EventBus from '../core/EventBus.js';
 import InputMap from '../core/InputMap.js';
+import GameState from '../core/GameState.js';
 
 // Unlocked systems — start with these 6
 const INITIAL_UNLOCKED = ['crossroads', 'sol', 'nova_prime', 'the_den', 'drift', 'the_margin'];
@@ -301,9 +302,36 @@ export default function createGalaxyScene(canvas, uiOverlay, payload = {}) {
   `;
   hudBar.innerHTML = `
     <span>SYSTEM: ${systemMap[playerSystem]?.name || playerSystem}</span>
-    <span>CREDITS: 1,500</span>
+    <span>CREDITS: ${GameState.credits.toLocaleString()}</span>
   `;
   uiOverlay.appendChild(hudBar);
+
+  // ---- Transponder Toggle ----
+  const transponderBtn = document.createElement('div');
+  transponderBtn.id = 'transponder-toggle';
+  transponderBtn.style.cssText = `
+    position:absolute; bottom:20px; right:20px;
+    font-family:'Courier New',monospace; font-size:12px;
+    padding:6px 14px; cursor:pointer; pointer-events:auto;
+    border:1px solid; user-select:none;
+  `;
+  function updateTransponderUI() {
+    if (GameState.transponderActive) {
+      transponderBtn.textContent = 'TRANSPONDER: ON';
+      transponderBtn.style.color = '#00ccff';
+      transponderBtn.style.borderColor = '#00ccff44';
+    } else {
+      transponderBtn.textContent = 'TRANSPONDER: OFF';
+      transponderBtn.style.color = '#ff4400';
+      transponderBtn.style.borderColor = '#ff4400';
+    }
+  }
+  updateTransponderUI();
+  transponderBtn.addEventListener('click', () => {
+    GameState.transponderActive = !GameState.transponderActive;
+    updateTransponderUI();
+  });
+  uiOverlay.appendChild(transponderBtn);
 
   // ---- Resize ----
   function onResize() {
@@ -403,6 +431,7 @@ export default function createGalaxyScene(canvas, uiOverlay, payload = {}) {
       // Clean up UI
       if (infoPanel.parentNode) infoPanel.parentNode.removeChild(infoPanel);
       if (hudBar.parentNode) hudBar.parentNode.removeChild(hudBar);
+      if (transponderBtn.parentNode) transponderBtn.parentNode.removeChild(transponderBtn);
       if (viewCubeContainer.parentNode) viewCubeContainer.parentNode.removeChild(viewCubeContainer);
       if (labelRenderer.domElement.parentNode) labelRenderer.domElement.parentNode.removeChild(labelRenderer.domElement);
       vcRenderer.dispose();
@@ -445,6 +474,7 @@ export default function createGalaxyScene(canvas, uiOverlay, payload = {}) {
 
     setPlayerSystem(sysId) {
       playerSystem = sysId;
+      GameState.currentSystem = sysId;
       const sys = systemMap[sysId];
       if (sys) {
         playerMarker.position.set(sys.position.x, sys.position.y, sys.position.z);
@@ -457,6 +487,13 @@ export default function createGalaxyScene(canvas, uiOverlay, payload = {}) {
           }
         }
       }
+      // Sync unlocked list to GameState
+      GameState.unlockedSystems = [...unlockedSystems];
+      // Update HUD
+      hudBar.innerHTML = `
+        <span>SYSTEM: ${sys?.name || sysId}</span>
+        <span>CREDITS: ${GameState.credits.toLocaleString()}</span>
+      `;
     },
 
     renderer,

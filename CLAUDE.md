@@ -63,7 +63,7 @@ PIRATE_BASE_ATTACK → GALAXY
 
 ## Current Production Status
 - [x] M1: Fundament + Galaxy Map
-- [ ] M2: Tunnel Hyperspace
+- [x] M2: Tunnel Hyperspace
 - [ ] M3: Dogfight
 - [ ] M4: Planet Attack
 - [ ] M5: Planet Landing & Trade
