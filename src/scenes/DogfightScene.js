@@ -6,6 +6,7 @@ import WireframeFactory, { COLORS } from '../core/WireframeFactory.js';
 import GameState from '../core/GameState.js';
 import EventBus from '../core/EventBus.js';
 import InputMap from '../core/InputMap.js';
+import { spawnWing } from '../entities/EnemyShip.js';
 
 // ---- Constants ----
 const COMBAT_BUBBLE = 100;       // 1 parsec
@@ -177,8 +178,32 @@ export default function createDogfightScene(canvas, uiOverlay, payload = {}) {
   // Each enemy: { mesh, hp, maxHp, faction, ai: {...}, ... }
 
   function spawnEnemies() {
-    // Will be implemented in M3.3
+    // Spawn enemies based on payload
+    // Wing of 4: 2 pairs. Otherwise 1 wing.
+    if (enemyCount <= 3) {
+      spawnWing(scene, enemies, {
+        faction,
+        count: enemyCount,
+        centerPos: new THREE.Vector3(0, 5, -50),
+      });
+    } else {
+      // Split into 2 wings
+      const half = Math.ceil(enemyCount / 2);
+      spawnWing(scene, enemies, {
+        faction,
+        count: half,
+        centerPos: new THREE.Vector3(-15, 5, -50),
+      });
+      spawnWing(scene, enemies, {
+        faction,
+        count: enemyCount - half,
+        centerPos: new THREE.Vector3(15, -3, -40),
+      });
+    }
   }
+
+  // Actually spawn them
+  spawnEnemies();
 
   function getAliveEnemies() {
     return enemies.filter(e => e.hp > 0);

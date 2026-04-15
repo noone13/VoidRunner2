@@ -9,6 +9,7 @@ import GameState from './core/GameState.js';
 import createMenuScene from './scenes/MenuScene.js';
 import createGalaxyScene from './scenes/GalaxyScene.js';
 import createTunnelScene from './scenes/TunnelScene.js';
+import createDogfightScene from './scenes/DogfightScene.js';
 
 // ---- DOM refs ----
 const canvas = document.getElementById('game-canvas');
@@ -33,6 +34,10 @@ StateManager.register(STATES.GALAXY, (payload) => {
 
 StateManager.register(STATES.TUNNEL, (payload) => {
   return createTunnelScene(canvas, uiOverlay, payload);
+});
+
+StateManager.register(STATES.DOGFIGHT, (payload) => {
+  return createDogfightScene(canvas, uiOverlay, payload);
 });
 
 // ---- Event handlers ----
@@ -105,10 +110,28 @@ EventBus.on('tunnel:arrived', ({ from, to }) => {
 });
 
 // Tunnel → Dogfight (pirate ambush)
-EventBus.on('tunnel:ambush', ({ enemies, count, from, to }) => {
-  console.log(`pirate ambush → DOGFIGHT (${count} pirates)`);
-  // M3 will handle actual dogfight — for now return to galaxy
-  GameState.currentSystem = to;
+EventBus.on('tunnel:ambush', ({ enemies: enemyFaction, count, from, to }) => {
+  console.log(`pirate ambush → DOGFIGHT (${count} ${enemyFaction})`);
+  StateManager.transition(STATES.DOGFIGHT, {
+    faction: enemyFaction,
+    count,
+    location: 'tunnel',
+    returnTo: to,
+    returnFrom: from,
+  });
+});
+
+// Dogfight → Galaxy (victory)
+EventBus.on('dogfight:victory', ({ faction }) => {
+  console.log(`dogfight victory vs ${faction}`);
+  EventBus.emit('enemy:faction_defeated', { faction });
+  GameState.save();
+  StateManager.transition(STATES.GALAXY);
+});
+
+// Dogfight → Galaxy (escaped)
+EventBus.on('dogfight:escaped', ({ faction }) => {
+  console.log(`escaped from ${faction}`);
   GameState.save();
   StateManager.transition(STATES.GALAXY);
 });
