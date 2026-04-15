@@ -234,9 +234,10 @@ export default function createGalaxyScene(canvas, uiOverlay, payload = {}) {
         <div>Tier: ${tierStars}  Station: ${station ? 'Yes (T' + stationTier + ')' : 'No'}  Planet: ${sys.hasPlanet ? 'Yes' : 'No'}</div>
         <div style="margin-top:8px;color:#aaa">${sys.description}</div>
         ${isCurrentSystem ? '<div style="margin-top:8px;color:#00ff88">YOU ARE HERE</div>' : ''}
-        <div style="margin-top:12px;display:flex;gap:8px">
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
           ${canTravel && isConnected ? `<button id="info-travel" style="background:none;border:1px solid #00ccff;color:#00ccff;padding:4px 16px;cursor:pointer;font-family:inherit;">TRAVEL HERE</button>` : ''}
           ${canTravel && !isConnected ? `<div style="color:#666;font-size:10px">No direct route from ${systemMap[playerSystem]?.name || playerSystem}</div>` : ''}
+          ${isCurrentSystem && sys.hasPlanet && faction !== 'player' ? `<button id="info-attack" style="background:none;border:1px solid #ff4400;color:#ff4400;padding:4px 16px;cursor:pointer;font-family:inherit;">ATTACK PLANET</button>` : ''}
           <button id="info-close" style="background:none;border:1px solid #888;color:#888;padding:4px 16px;cursor:pointer;font-family:inherit;">CLOSE</button>
         </div>
       `;
@@ -249,6 +250,14 @@ export default function createGalaxyScene(canvas, uiOverlay, payload = {}) {
     if (travelBtn) {
       travelBtn.onclick = () => {
         EventBus.emit('travel:requested', { from: playerSystem, to: sys.id });
+        infoPanel.style.display = 'none';
+        selectedSystem = null;
+      };
+    }
+    const attackBtn = infoPanel.querySelector('#info-attack');
+    if (attackBtn) {
+      attackBtn.onclick = () => {
+        EventBus.emit('planet_attack:requested', { systemId: sys.id, faction });
         infoPanel.style.display = 'none';
         selectedSystem = null;
       };

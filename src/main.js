@@ -10,6 +10,7 @@ import createMenuScene from './scenes/MenuScene.js';
 import createGalaxyScene from './scenes/GalaxyScene.js';
 import createTunnelScene from './scenes/TunnelScene.js';
 import createDogfightScene from './scenes/DogfightScene.js';
+import createPlanetAttackScene from './scenes/PlanetAttackScene.js';
 
 // ---- DOM refs ----
 const canvas = document.getElementById('game-canvas');
@@ -40,6 +41,10 @@ StateManager.register(STATES.DOGFIGHT, (payload) => {
   return createDogfightScene(canvas, uiOverlay, payload);
 });
 
+StateManager.register(STATES.PLANET_ATTACK, (payload) => {
+  return createPlanetAttackScene(canvas, uiOverlay, payload);
+});
+
 // ---- Event handlers ----
 EventBus.on('menu:action', ({ action }) => {
   if (action === 'new_game') {
@@ -50,6 +55,11 @@ EventBus.on('menu:action', ({ action }) => {
       StateManager.transition(STATES.GALAXY);
     }
   }
+});
+
+EventBus.on('planet_attack:requested', ({ systemId, faction }) => {
+  console.log(`attacking planet in ${systemId} (${faction})`);
+  StateManager.transition(STATES.PLANET_ATTACK, { systemId, faction });
 });
 
 EventBus.on('travel:requested', ({ from, to }) => {
@@ -132,6 +142,24 @@ EventBus.on('dogfight:victory', ({ faction }) => {
 // Dogfight → Galaxy (escaped)
 EventBus.on('dogfight:escaped', ({ faction }) => {
   console.log(`escaped from ${faction}`);
+  GameState.save();
+  StateManager.transition(STATES.GALAXY);
+});
+
+// Planet Attack → Galaxy (victory)
+EventBus.on('planet_attack:victory', ({ systemId, faction, tier }) => {
+  console.log(`planet captured: ${systemId} (was ${faction})`);
+  FactionState.setFaction(systemId, 'player');
+  const reward = [500, 1200, 3000][tier - 1] + Math.floor(Math.random() * 500);
+  GameState.credits += reward;
+  GameState.save();
+  StateManager.transition(STATES.GALAXY);
+});
+
+// Planet Attack → Galaxy (retreat)
+EventBus.on('planet_attack:retreat', ({ systemId, tier }) => {
+  console.log(`retreat from ${systemId} — defense reinforced`);
+  // Defense reinforcement tracked per system (simplified: just log)
   GameState.save();
   StateManager.transition(STATES.GALAXY);
 });

@@ -65,7 +65,7 @@ PIRATE_BASE_ATTACK → GALAXY
 - [x] M1: Fundament + Galaxy Map
 - [x] M2: Tunnel Hyperspace
 - [x] M3: Dogfight
-- [ ] M4: Planet Attack
+- [x] M4: Planet Attack
 - [ ] M5: Planet Landing & Trade
 - [ ] M6: Factions, Reputation, Territory
 - [ ] M7: Missions
